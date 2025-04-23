@@ -10,11 +10,14 @@ plugins {
     id("org.openapi.generator")
     id("com.rameshkp.openapi-merger-gradle-plugin")
     jacoco
+    id("dev.mbo.djp.dependencies-json") version "1.2.2"
 }
 
 dependencies {
     implementation(platform(libs.bom))
     implementation(platform(libs.library.bom))
+
+    implementation("dev.mbo:kotlin-logging")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -33,8 +36,6 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
-
-val javaVersion: String by System.getProperties()
 
 tasks {
     withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
@@ -86,7 +87,6 @@ fun getCommitHash(): String {
 
 val openAPIBasePackage = "dev.mbo.djs"
 val openAPISpecParts: String by System.getProperties()
-val openAPISpecFilePath: String by System.getProperties()
 val openAPIGenOutBase: String by System.getProperties()
 
 val openAPISpecFileNamePrefix: String by System.getProperties()
@@ -130,6 +130,10 @@ openApiMerger {
     }
 }
 
+dependenciesJson {
+    postUrl.set("http://localhost:8080/projects/dependencies-json-server")
+}
+
 openApiGenerate {
     // https://openapi-generator.tech/docs/generators/kotlin-spring
     generatorName.set("kotlin-spring")
@@ -163,7 +167,7 @@ openApiGenerate {
             "exceptionHandler" to "false",
             "gradleBuildFile" to "false",
             "reactive" to "false",
-            "serviceInterface" to "false",
+            "serviceInterface" to "true",
             "sortModelPropertiesByRequiredFlag" to "true",
             "sortParamsByRequiredFlag" to "true",
             "swaggerAnnotations" to "true",
