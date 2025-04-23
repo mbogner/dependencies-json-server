@@ -1,6 +1,6 @@
 # dependencies-json-server
 
-API to receive dependencies from dependencies-json-plugin
+API to receive dependencies from [dependencies-json-plugin](https://github.com/mbogner/dependencies-json-plugin).
 
 ## Release
 
