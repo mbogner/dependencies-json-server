@@ -1,0 +1,23 @@
+logging:
+  level:
+    root: INFO
+    dev.mbo: TRACE
+
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: dependencies-json-server
+  main:
+    banner-mode: off
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      cors:
+        allowed-origins: "*"
+        allowed-methods: GET

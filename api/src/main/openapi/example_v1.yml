@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: ignored
+  version: ignored
+
+tags:
+  - name: Example
+paths:
+  /v1/example:
+    description: Example endpoint.
+    get:
+      description: "read example"
+      tags:
+        - Example
+      operationId: getExample
+      responses:
+        "201":
+          description: No content
