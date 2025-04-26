@@ -1,6 +1,6 @@
 rootProject.name = "dependencies-json-server"
 
-val projectModules = mapOf(
+mapOf(
     "api" to "api",
 ).forEach {
     include(it.key)
@@ -35,6 +35,9 @@ pluginManagement {
 
         val gradleReleasePluginVersion: String by System.getProperties()
         id("net.researchgate.release") version gradleReleasePluginVersion
+
+        val gradleDjpVersion: String by System.getProperties()
+        id("dev.mbo.djp.dependencies-json") version gradleDjpVersion
     }
 }
 

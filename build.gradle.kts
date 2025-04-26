@@ -6,6 +6,8 @@ plugins {
 }
 
 allprojects {
+    group = "dev.mbo.djp.server"
+
     repositories {
         mavenLocal()
         mavenCentral()

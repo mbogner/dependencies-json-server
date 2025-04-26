@@ -4,26 +4,27 @@ info:
   description: dependencies-json-server API
   version: v1
 servers:
-- url: https://localhost:8080
-  description: dev
+  - url: https://localhost:8080
+    description: dev
 tags:
-- name: Example
+  - name: Example
 paths:
-  /projects/{id}:
+  /projects/{key}:
     post:
       tags:
-      - Project
+        - Project
       description: Add project information to project with given key.
       operationId: processProject
       parameters:
-      - name: id
-        in: path
-        description: Unique project identifier.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: key
+          in: path
+          description: Unique project identifier.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: my-cool-project
       requestBody:
         description: The project definition.
         content:
@@ -38,10 +39,10 @@ components:
   schemas:
     Dependency:
       required:
-      - file
-      - group
-      - name
-      - version
+        - file
+        - group
+        - name
+        - version
       type: object
       properties:
         group:
@@ -58,16 +59,26 @@ components:
           example: kotlin-stdlib-2.1.20.jar
     Project:
       required:
-      - dependencies
-      - name
-      - timestamp
-      - version
+        - dependencies
+        - group
+        - name
+        - timestamp
+        - version
       type: object
       properties:
+        group:
+          maxLength: 128
+          minLength: 1
+          type: string
+          example: org.jetbrains.kotlin
         name:
+          maxLength: 64
+          minLength: 1
           type: string
           example: api
         version:
+          maxLength: 32
+          minLength: 1
           type: string
           example: 1.0.0-SNAPSHOT
         timestamp:

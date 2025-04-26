@@ -1,4 +1,4 @@
-package dev.mbo.djs.project
+package dev.mbo.djs.domain.projects
 
 import dev.mbo.djs.api.ProjectApiDelegate
 import dev.mbo.djs.model.ProjectDto
@@ -14,11 +14,11 @@ class ProjectApiDelegateImpl(
     private val log = logger()
 
     override fun processProject(
-        id: String,
+        key: String,
         projectDto: ProjectDto
     ): ResponseEntity<Unit> {
-        log.info("POST /projects/{}: {}", id, projectDto)
-        service.processProject(id, projectDto)
+        log.info("POST /projects/{}: {}", key, projectDto)
+        service.processProject(key, projectDto)
         return ResponseEntity.ok().build()
     }
 }

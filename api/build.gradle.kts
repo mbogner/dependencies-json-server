@@ -10,7 +10,7 @@ plugins {
     id("org.openapi.generator")
     id("com.rameshkp.openapi-merger-gradle-plugin")
     jacoco
-    id("dev.mbo.djp.dependencies-json") version "1.2.2"
+    id("dev.mbo.djp.dependencies-json")
 }
 
 dependencies {
@@ -18,7 +18,9 @@ dependencies {
     implementation(platform(libs.library.bom))
 
     implementation("dev.mbo:kotlin-logging")
+    implementation("dev.mbo:spring-kotlin-jpa")
 
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -28,6 +30,9 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.swagger.core.v3:swagger-models")
+
+    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
